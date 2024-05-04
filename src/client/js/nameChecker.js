@@ -1,10 +1,14 @@
 function checkForName(inputText) {
     console.log("::: Running checkForName :::", inputText);
-    let names = ["Picard", "Janeway", "Kirk", "Archer", "Georgiou"];
+    const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    const regex = new RegExp(emailPattern);
 
-    if (names.includes(inputText)) {
-        alert("Welcome, Captain!");
+    if (inputText.match(regex)) {
+        alert("Please don't input email");
+        return false;
     }
+
+    return true;
 }
 
 export { checkForName };

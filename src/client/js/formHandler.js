@@ -5,16 +5,16 @@ function handleSubmit(event) {
 
     // check what text was put into the form field
     let formText = document.getElementById("name").value;
-    checkForName(formText);
-
-    postData("/api", { formText }).then((data) => {
-        console.log(data);
-        document.querySelector(".agreement").innerHTML = data.agreement;
-        document.querySelector(".type").innerHTML =
-            data?.sentimented_concept_list[0]?.type ?? "N/A";
-        document.querySelector(".score").innerHTML =
-            data?.sentimented_concept_list[0]?.score_tag ?? "N/A";
-    });
+    if (checkForName(formText)) {
+        postData("/api", { formText }).then((data) => {
+            console.log(data);
+            document.querySelector(".agreement").innerHTML = data.agreement;
+            document.querySelector(".type").innerHTML =
+                data.sentimented_concept_list[0].type ?? "N/A";
+            document.querySelector(".score").innerHTML =
+                data.sentimented_concept_list[0].score_tag ?? "N/A";
+        });
+    }
 }
 
 // POST request
